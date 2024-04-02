@@ -2,8 +2,7 @@
 
 package Swings;
 
-import java.awt.Color;
-import java.awt.GradientPaint;
+import Swings.PanelLoginandForgot;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -14,19 +13,19 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import net.miginfocom.swing.MigLayout;
-import Swings.Button;
-import java.text.DecimalFormat;
 
 public class PanelCover extends javax.swing.JPanel {
     
-    private final DecimalFormat df = new DecimalFormat("##0.###");
+    private PanelLoginandForgot parentPanel;
     private BufferedImage image; //Used for holding and loading image from a file (See: loadImage()) 
     private ActionListener event;
     private MigLayout layout;
     private Boolean isLogin = false;
     private Button button;
     
-    public PanelCover() {
+    public PanelCover(PanelLoginandForgot parentPanel) {
+        
+        this.parentPanel = parentPanel;
         initComponents();
         setOpaque(false);
         loadImage();
@@ -45,8 +44,10 @@ public class PanelCover extends javax.swing.JPanel {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                
                 login(true);
                 event.actionPerformed(ae);
+                
             }
         });
         add(button, "w 70%, h 40"); 
@@ -100,9 +101,11 @@ public class PanelCover extends javax.swing.JPanel {
         if (login) {
             ImageIcon btnIcon = new ImageIcon(getClass().getResource("/Assets/bckToLogin.png"));
             button.setIcon(btnIcon);
+            parentPanel.clearLoginFields();
         } else {
             ImageIcon btnIcon = new ImageIcon(getClass().getResource("/Assets/btnForgotPass.png"));
             button.setIcon(btnIcon);
+            parentPanel.clearForgotPassFields();
         }
         this.isLogin = login;
     } else {
@@ -112,9 +115,11 @@ public class PanelCover extends javax.swing.JPanel {
         if (this.isLogin) {
             ImageIcon btnIcon = new ImageIcon(getClass().getResource("/Assets/bckToLogin.png"));
             button.setIcon(btnIcon);
+            parentPanel.clearLoginFields();
         } else {
             ImageIcon btnIcon = new ImageIcon(getClass().getResource("/Assets/btnForgotPass.png"));
             button.setIcon(btnIcon);
+            parentPanel.clearForgotPassFields();
         }
     }
 }

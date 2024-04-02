@@ -2,12 +2,8 @@
 
 package Swings;
 
-import Services.ServiceUser;
-import Swings.Button;
-import Swings.MyTextField;
-import Swings.MyPasswordField;
-import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,10 +19,6 @@ import real.se.LoginPage;
 
 public class PanelLoginandForgot extends javax.swing.JLayeredPane{
  
-    private Button button;
-    private ActionListener event;
-    
-    
     public PanelLoginandForgot() {
         initComponents();
         initForgotPass();
@@ -233,7 +225,30 @@ public class PanelLoginandForgot extends javax.swing.JLayeredPane{
         add(forgotPass, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
+    //Text Fields Clearer
+    public void clearLoginFields(){
+        //Get the login components
+        Component[] components = login.getComponents();
+        for (Component component : components) {
+        if (component instanceof MyTextField) {
+            ((MyTextField) component).setText("");
+        } else if (component instanceof MyPasswordField) {
+            ((MyPasswordField) component).setText("");
+        }
+        }
+    }
    
+    public void clearForgotPassFields() {
+    // Get the forgot password components 
+    Component[] components = forgotPass.getComponents();
+    for (Component component : components) {
+        if (component instanceof MyTextField) {
+            ((MyTextField) component).setText("");
+        } else if (component instanceof MyPasswordField) {
+            ((MyPasswordField) component).setText("");
+        }
+    }
+}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel forgotPass;

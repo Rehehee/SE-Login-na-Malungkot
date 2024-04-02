@@ -2,7 +2,6 @@
 package real.se;
 
 import Models.ModelMessage;
-import Services.ServiceMail;
 import Services.ServiceUser;
 import Swings.Messages;
 import Swings.PanelCover;
@@ -47,10 +46,10 @@ public class LoginPage extends javax.swing.JFrame {
     private void init(){
         service = new ServiceUser("E:\\Netbeans\\UserCreds.txt");
         layout = new MigLayout("fill, insets 0"); //insets 0, meaning sagad hanggang dulo 
-        cover = new PanelCover();
         loading = new PanelLoading();
         verifyCode = new PanelVerifyCode();
         loginAndForgot = new PanelLoginandForgot();
+        cover = new PanelCover(loginAndForgot);
         
         //Timing Target is the animation code 
         TimingTarget target= new TimingTargetAdapter(){
@@ -216,7 +215,7 @@ public class LoginPage extends javax.swing.JFrame {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                     animator.start();
                 } catch (InterruptedException e) {
                     System.err.println(e);
